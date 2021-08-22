@@ -1,0 +1,8 @@
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Update'/>
+</form>
+
+<form action="{% url 'delete' key %}" method="POST">{% csrf_token %}
+    <input type='submit' value='Delete'/>
+</form>
