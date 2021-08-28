@@ -5,4 +5,4 @@ class ListForm(forms.ModelForm):
     deadline    = forms.DateTimeInput
     class Meta:
         model = ToDo
-        fields = '__all__'
+        exclude = ['updates']

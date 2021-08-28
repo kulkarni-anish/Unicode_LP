@@ -7,7 +7,7 @@ from .forms import ListForm
 # Create your views here.
 
 def input_view(request):
-    form = ListForm(request.POST)
+    form = ListForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('home')
@@ -32,4 +32,4 @@ def delete_view(request,key):
         obj.delete()
         return redirect('home')
     context={}
-    return render(request,"delete.html",context)
+    return render(request,"list.html",context)

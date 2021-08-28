@@ -10,6 +10,7 @@
 {% for todo in tasks %}
     {% if not todo.status %}
         <li><strong><a href="{% url 'update' todo.id %}">{{ todo.name }}</a></strong><br></li>
+        {{ todo.user }}<br>
         {{ todo.description }}<br>
         Time of Input:{{ todo.date }}<br>
         No. of updates:{{ todo.updates }}<br>
