@@ -39,7 +39,7 @@ def delete_view(request,key):
 def signup_view(request):
     form = MyUserCreationForm               #This renders the empty form
     if request.method=='POST':
-        form = MyUserCreationForm(request.POST)           #This adds the POST data to the form
+        form = MyUserCreationForm(request.POST, request.FILES)      #This adds the POST data to the form
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')
