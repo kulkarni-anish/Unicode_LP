@@ -7,6 +7,7 @@ class ListForm(forms.ModelForm):
     class Meta:
         model = ToDo
         exclude = ['updates']
+        widgets = {'user': forms.HiddenInput()}
 
 
 class MyUserCreationForm(UserCreationForm): #This need to be rewritten for it to work properly                                       

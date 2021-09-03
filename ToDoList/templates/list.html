@@ -2,22 +2,28 @@
 
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    {% if request.user.profile_picture %}
+    <p><img src="{{ request.user.profile_picture.url }}" width=200px></p>
+    {% endif %}
 {% else %}
     <p>Welcome, new user. Please log in.</p>
 {% endif %}
+
+
 <a href="{% url 'logout' %}">Logout</a>
+
+<h2>Add a Task</h2>
 
 <form method="POST">{% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value='Add'/>
 </form>
-
+<h3>{{user.full_name|capfirst}}'s Tasks</h3>
 <ol>
 <h4>Pending:</h4>
 {% for todo in tasks %}
     {% if not todo.status %}
-        <li><strong><a href="{% url 'update' todo.id %}">{{ todo.name }}</a></strong><br></li>
-        {{ todo.user }}<br>
+        <li><strong><a href="{% url 'update' todo.id %}">{{ todo.name|capfirst }}</a></strong><br></li>
         {{ todo.description }}<br>
         Time of Input:{{ todo.date }}<br>
         No. of updates:{{ todo.updates }}<br>
